@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Escudo Vial — Protección Inteligente para Motorizados</title>
+  <meta name="description" content="Sticker QR inteligente de alta resistencia para cascos y motocicletas. Ficha médica de emergencia instantánea y botón de pánico enlazado a central de emergencias.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body class="light-theme">
+
+  <!-- ================= PRELOADER MINIMALISTA APPLE ================= -->
+  <div id="preloader" class="preloader">
+    <div class="minimal-loader">
+      <div class="loader-ring-wrapper">
+        <svg class="loader-svg" viewBox="0 0 50 50">
+          <circle class="loader-track" cx="25" cy="25" r="20"></circle>
+          <circle id="loader-bar" class="loader-circle" cx="25" cy="25" r="20"></circle>
+        </svg>
+      </div>
+      <span id="progress-percentage" class="loader-number">0%</span>
+    </div>
+  </div>
+
+  <!-- ================= NAVBAR FLOTANTE GLASS ================= -->
+  <header class="header-nav" id="header-nav">
+    <div class="nav-container">
+      <a href="#hero-scene" class="nav-brand">
+        <span class="brand-shield">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M12 8v8M8 12h8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">ESCUDO<strong>VIAL</strong></span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="#hero-scene" class="nav-link">Inicio</a>
+        <a href="#filosofia" class="nav-link">El Producto</a>
+        <a href="#simulador" class="nav-link">Ficha Médica</a>
+        <a href="#protocolo" class="nav-link">Protocolo Central</a>
+        <a href="#en-ruta" class="nav-link">En Carretera</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/?text=Hola%20quiero%20adquirir%20mi%20Escudo%20Vial" target="_blank" class="btn-primary-pill">
+          <span>Adquirir Sticker</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="arrow-icon">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= CAPÍTULO 1: HERO SCRUBBING (EL CASCO & QR) ================= -->
+    <section class="scroll-scene-section" id="hero-scene">
+      <div class="pinned-viewport">
+        <!-- Canvas de 60fps para Scrubbing -->
+        <canvas id="hero-canvas" class="scrub-canvas"></canvas>
+        <div class="canvas-ambient-gradient"></div>
+
+        <!-- Indicador de scroll inicial -->
+        <div class="scroll-indicator" id="scroll-prompt">
+          <div class="mouse-icon">
+            <div class="mouse-wheel"></div>
+          </div>
+          <span>Haz scroll para explorar</span>
+        </div>
+
+        <!-- Capas Narrativas en Fases Pinned -->
+        <div class="narrative-overlay-container">
+          
+          <!-- Fase 1: Entrada & Presentación -->
+          <div class="story-card phase" id="phase-1">
+            <div class="pill-tag">Tecnología de Salvamento Pasivo</div>
+            <h1 class="hero-title">
+              La protección que acompaña <br>
+              <span class="gradient-text">cada kilómetro.</span>
+            </h1>
+            <p class="hero-desc">
+              Transformamos la superficie de tu casco en una línea directa con los servicios de emergencia. Un sticker inteligente de ultra resistencia con tu identidad médica vital y geolocalización inmediata.
+            </p>
+          </div>
+
+          <!-- Fase 2: El Peligro del Tiempo -->
+          <div class="story-card phase" id="phase-2">
+            <div class="pill-tag tag-warning">Minuto de Oro</div>
+            <h2 class="section-title">
+              En un accidente, <br>
+              <span class="highlight-blue">cada segundo es decisivo.</span>
+            </h2>
+            <p class="section-desc">
+              El 70% de los motorizados no pueden comunicarse tras un impacto. Los socorristas necesitan saber tu tipo de sangre, alergias a medicamentos y contactos familiares de inmediato, sin claves ni bloqueos.
+            </p>
+          </div>
+
+          <!-- Fase 3: El Sticker en el Casco -->
+          <div class="story-card phase" id="phase-3">
+            <div class="pill-tag tag-success">Diseño de Ingeniería</div>
+            <h2 class="section-title">
+              Adhesión grado aeroespacial. <br>
+              <span class="gradient-text">Visible y reflectante.</span>
+            </h2>
+            <p class="section-desc">
+              Ubicado estratégicamente en el lateral de tu casco o chasis. Diseñado para resistir agua a presión, calor extremo, lluvia ácida y fricción, garantizando legibilidad en cualquier situación.
+            </p>
+          </div>
+
+          <!-- Fase 4: Macro QR -->
+          <div class="story-card phase" id="phase-4">
+            <div class="pill-tag tag-accent">Escaneo Universal</div>
+            <h2 class="section-title">
+              Un escaneo. <br>
+              <span class="highlight-blue">Respuesta total en 2 segundos.</span>
+            </h2>
+            <p class="section-desc">
+              Cualquier paramédico, policía o civil puede escanearlo con la cámara de su teléfono. Sin instalar apps, sin registros obligatorios. La ficha médica se abre al instante.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ZONA DE RESPIRACIÓN 1: FILOSOFÍA & MÉTRICAS ================= -->
+    <section class="editorial-section" id="filosofia">
+      <div class="container-editorial">
+        
+        <div class="editorial-header">
+          <div class="kicker">INGENIERÍA PARA LA VIDA</div>
+          <h2 class="headline-editorial">
+            Un simple sticker.<br>
+            Una infraestructura <span class="highlight-underline">completa de rescate.</span>
+          </h2>
+          <p class="lead-editorial">
+            Escudo Vial une la física de materiales de alta durabilidad con una plataforma médica en la nube y un centro de monitoreo 24/7 listo para reaccionar ante una alerta de pánico.
+          </p>
+        </div>
+
+        <!-- Grid de Métricas / Impacto -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-number"><span class="counter" data-target="2">0</span> seg</div>
+            <div class="metric-label">Tiempo promedio de acceso a datos vitales</div>
+            <p class="metric-info">Carga instantánea de ficha médica optimizada para cualquier conexión móvil.</p>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-number"><span class="counter" data-target="100">0</span>%</div>
+            <div class="metric-label">Sin baterías ni recargas</div>
+            <p class="metric-info">Tecnología pasiva permanente. Siempre operativo, haga frío, llueva o pasen años.</p>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-number"><span class="counter" data-target="24">0</span>/7</div>
+            <div class="metric-label">Central de Emergencias Activa</div>
+            <p class="metric-info">Operadores capacitados para enlazar al instante con ambulancias y familiares.</p>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-number">IP68</div>
+            <div class="metric-label">Resistencia a la intemperie</div>
+            <p class="metric-info">Protección UV contra decoloración solar, barro, lavado a alta presión y combustible.</p>
+          </div>
+        </div>
+
+        <!-- 3 Pilares del Producto -->
+        <div class="pillars-row">
+          <div class="pillar-box">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+              </svg>
+            </div>
+            <h3>Sin Suscripciones Forzosas</h3>
+            <p>El acceso a tu ficha médica para los rescatistas es libre y gratuito de por vida. Tu seguridad no tiene fecha de caducidad.</p>
+          </div>
+
+          <div class="pillar-box">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+            </div>
+            <h3>Privacidad Protegida</h3>
+            <p>Tú decides qué datos mostrar públicamente (solo lo indispensable: sangre, alergias y contactos SOS). Datos encriptados de extremo a extremo.</p>
+          </div>
+
+          <div class="pillar-box">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <h3>Geolocalización Inmediata</h3>
+            <p>Al pulsar el botón de pánico, se emite tu ubicación satelital exacta con precisión milimétrica a la central de auxilio.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= CAPÍTULO 2: PREPARACIÓN & FICHA MÉDICA (VIDEO 2 SCRUBBING) ================= -->
+    <section class="scroll-scene-section" id="prep-scene">
+      <div class="pinned-viewport">
+        <!-- Canvas Capítulo 2 -->
+        <canvas id="prep-canvas" class="scrub-canvas"></canvas>
+        <div class="canvas-ambient-gradient"></div>
+
+        <div class="narrative-overlay-container">
+          <!-- Fase Prep 1 -->
+          <div class="story-card phase" id="prep-phase-1">
+            <div class="pill-tag">Rutina de Seguridad</div>
+            <h2 class="section-title">
+              Antes de encender el motor, <br>
+              <span class="gradient-text">tu escudo ya está listo.</span>
+            </h2>
+            <p class="section-desc">
+              No requiere que abras una aplicación cada vez que sales. Con solo portar tu casco, llevas contigo todo tu historial clínico de urgencia.
+            </p>
+          </div>
+
+          <!-- Fase Prep 2 -->
+          <div class="story-card phase" id="prep-phase-2">
+            <div class="pill-tag tag-accent">El Respaldo Invisible</div>
+            <h2 class="section-title">
+              Tranquilidad para ti, <br>
+              <span class="highlight-blue">paz para tu familia.</span>
+            </h2>
+            <p class="section-desc">
+              Tus seres queridos saben que ante cualquier imprevisto, los socorristas tendrán sus números telefónicos en la palma de la mano al primer contacto.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ZONA DE RESPIRACIÓN 2: SIMULADOR INTERACTIVO DE FICHA MÉDICA & BOTÓN SOS ================= -->
+    <section class="simulator-section" id="simulador">
+      <div class="container-editorial">
+        <div class="editorial-header text-center">
+          <div class="kicker">INTERACCIÓN EN VIVO</div>
+          <h2 class="headline-editorial">
+            Prueba cómo se ve tu <span class="highlight-blue">Ficha Médica</span> al ser escaneada.
+          </h2>
+          <p class="lead-editorial mx-auto">
+            Haz clic en los elementos del teléfono simulado. Prueba el <strong>Botón de Pánico</strong> para experimentar cómo se dispara la alerta a la central.
+          </p>
+        </div>
+
+        <div class="simulator-wrapper">
+          
+          <!-- Mockup Móvil Interactivo -->
+          <div class="phone-mockup-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              
+              <!-- Encabezado de la Ficha Médica -->
+              <div class="screen-header">
+                <div class="medical-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M12 2v20M2 12h20"/>
+                  </svg>
+                  <span>FICHA MÉDICA DE EMERGENCIA</span>
+                </div>
+                <div class="status-verified">● Perfil Verificado</div>
+              </div>
+
+              <!-- Perfil del Piloto -->
+              <div class="pilot-profile-card">
+                <div class="avatar-ring">
+                  <div class="avatar-img">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </div>
+                  <span class="blood-type-badge">O Positivo</span>
+                </div>
+                <div class="pilot-details">
+                  <h4 class="pilot-name">Alejandro Mendoza R.</h4>
+                  <p class="pilot-id">DNI: 43.829.102 • 31 Años</p>
+                  <p class="pilot-bike">Yamaha MT-09 • Placa: KV-8842</p>
+                </div>
+              </div>
+
+              <!-- Pestañas de Datos -->
+              <div class="screen-tabs">
+                <button class="tab-btn active" data-tab="datos">Datos Médicos</button>
+                <button class="tab-btn" data-tab="contactos">Contactos SOS</button>
+                <button class="tab-btn" data-tab="seguro">Póliza / Seguro</button>
+              </div>
+
+              <!-- Contenido de Pestaña: Datos Médicos -->
+              <div class="tab-panel active" id="tab-datos">
+                <div class="data-row alert-row">
+                  <div class="data-label">⚠️ Alergias Críticas</div>
+                  <div class="data-value highlight-red">Alérgico a Penicilina y AINEs</div>
+                </div>
+                <div class="data-grid-2">
+                  <div class="data-row">
+                    <div class="data-label">Grupo Sanguíneo</div>
+                    <div class="data-value strong">O+ (Dador Universal)</div>
+                  </div>
+                  <div class="data-row">
+                    <div class="data-label">Donante de Órganos</div>
+                    <div class="data-value">Sí (Expreso)</div>
+                  </div>
+                </div>
+                <div class="data-row">
+                  <div class="data-label">Condiciones / Enfermedades</div>
+                  <div class="data-value">Asma leve (Uso de salbutamol ocasional)</div>
+                </div>
+              </div>
+
+              <!-- Contenido de Pestaña: Contactos SOS -->
+              <div class="tab-panel" id="tab-contactos">
+                <div class="contact-card">
+                  <div class="contact-info">
+                    <div class="contact-role">Esposa (Contacto Primario)</div>
+                    <div class="contact-name">Mariana Silva</div>
+                    <div class="contact-phone">+58 414 839-2011</div>
+                  </div>
+                  <button class="btn-call-fake" onclick="simularLlamada('Mariana Silva')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                    <span>Llamar</span>
+                  </button>
+                </div>
+                <div class="contact-card">
+                  <div class="contact-info">
+                    <div class="contact-role">Hermano</div>
+                    <div class="contact-name">Carlos Mendoza</div>
+                    <div class="contact-phone">+58 412 550-9182</div>
+                  </div>
+                  <button class="btn-call-fake" onclick="simularLlamada('Carlos Mendoza')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                    <span>Llamar</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Contenido de Pestaña: Seguro -->
+              <div class="tab-panel" id="tab-seguro">
+                <div class="data-row">
+                  <div class="data-label">Aseguradora</div>
+                  <div class="data-value strong">Seguros Caracas / Plan Salud Total</div>
+                </div>
+                <div class="data-row">
+                  <div class="data-label">N° de Póliza</div>
+                  <div class="data-value">POL-99281-A</div>
+                </div>
+                <div class="data-row">
+                  <div class="data-label">Clínica de Preferencia</div>
+                  <div class="data-value">Centro Médico Docente La Trinidad</div>
+                </div>
+              </div>
+
+              <!-- SECCIÓN DEL BOTÓN DE PÁNICO SOS -->
+              <div class="panic-button-box">
+                <div class="panic-caption">Si el piloto necesita rescate inmediato:</div>
+                <button id="btn-panic-trigger" class="btn-panic-sos">
+                  <div class="sos-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                      <polyline points="2 17 12 22 22 17"/>
+                      <polyline points="2 12 12 17 22 12"/>
+                    </svg>
+                  </div>
+                  <div class="sos-text">
+                    <span class="sos-main">BOTÓN DE PÁNICO SOS</span>
+                    <span class="sos-sub">Toca para alertar a la Central 24/7</span>
+                  </div>
+                </button>
+                
+                <!-- Feedback animado de alerta -->
+                <div id="sos-alert-feedback" class="sos-feedback hidden">
+                  <div class="signal-radar"></div>
+                  <div class="sos-feedback-content">
+                    <strong>¡ALERTA TRANSMITIDA A CENTRAL!</strong>
+                    <span>GPS: 10.4880° N, 66.8792° W</span>
+                    <div class="dispatch-tag">Despacho de asistencia en curso</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Explicación al lado del Mockup -->
+          <div class="simulator-features">
+            <div class="feature-step">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h4>Acceso Sin Barreras</h4>
+                <p>El paramédico no tiene que desbloquear el teléfono del accidentado ni adivinar contraseñas. Un escaneo de 2 segundos desde cualquier móvil muestra la información.</p>
+              </div>
+            </div>
+
+            <div class="feature-step">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h4>Evita Errores Médicos Fatales</h4>
+                <p>La administración involuntaria de antibióticos o analgésicos a los que el paciente es alérgico causa miles de complicaciones al año. Escudo Vial lo previene de raíz.</p>
+              </div>
+            </div>
+
+            <div class="feature-step">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h4>Protocolo de Central 24/7</h4>
+                <p>Al pulsar el botón de auxilio, la alerta llega de inmediato a nuestros operadores con coordenadas GPS precisas, activando el enlace con unidades de ambulancia y llamando a los familiares.</p>
+              </div>
+            </div>
+
+            <div class="feature-quote-box">
+              <p>“Saber el grupo sanguíneo exacto y las alergias en el primer minuto reduce drásticamente el tiempo de traslado y estabilización en emergencias de tránsito.”</p>
+              <div class="quote-author">— Dr. Fernando Valero, Especialista en Medicina de Urgencias</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROTOCOLO DE LA CENTRAL ================= -->
+    <section class="protocol-section" id="protocolo">
+      <div class="container-editorial">
+        <div class="editorial-header">
+          <div class="kicker">RED DE ASISTENCIA VIAL</div>
+          <h2 class="headline-editorial">
+            ¿Qué sucede cuando se <br>
+            <span class="highlight-red">presiona el botón de pánico?</span>
+          </h2>
+          <p class="lead-editorial">
+            Un flujo milimétrico de respuesta diseñado para actuar cuando el conductor no puede hablar.
+          </p>
+        </div>
+
+        <div class="protocol-flow-grid">
+          <div class="flow-card">
+            <div class="flow-number">Paso 1</div>
+            <div class="flow-icon icon-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M2 12h20"/>
+                <circle cx="12" cy="12" r="9"/>
+              </svg>
+            </div>
+            <h4>Captura GPS Satelital</h4>
+            <p>El navegador del socorrista captura las coordenadas geográficas exactas del lugar del siniestro con precisión de metros.</p>
+          </div>
+
+          <div class="flow-card">
+            <div class="flow-number">Paso 2</div>
+            <div class="flow-icon icon-red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 01-3.46 0"/>
+              </svg>
+            </div>
+            <h4>Alarma en Central 24/7</h4>
+            <p>La consola de nuestros operadores emite una alerta acústica y visual prioritaria con el mapa y la ficha completa del piloto.</p>
+          </div>
+
+          <div class="flow-card">
+            <div class="flow-number">Paso 3</div>
+            <div class="flow-icon icon-green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <h4>Enlace con Familiares</h4>
+            <p>El sistema dispara de inmediato llamadas automáticas y SMS con el mapa del accidente a los contactos SOS registrados.</p>
+          </div>
+
+          <div class="flow-card">
+            <div class="flow-number">Paso 4</div>
+            <div class="flow-icon icon-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="3" width="15" height="13"/>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                <circle cx="5.5" cy="18.5" r="2.5"/>
+                <circle cx="18.5" cy="18.5" r="2.5"/>
+              </svg>
+            </div>
+            <h4>Coordinación de Socorro</h4>
+            <p>Se transmite la información al centro de ambulancias y autoridades de tránsito de la jurisdicción correspondiente.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= CAPÍTULO 3: EN RUTA (VIDEO 3 SCRUBBING) ================= -->
+    <section class="scroll-scene-section" id="en-ruta">
+      <div class="pinned-viewport">
+        <!-- Canvas Capítulo 3 -->
+        <canvas id="road-canvas" class="scrub-canvas"></canvas>
+        <div class="canvas-ambient-gradient"></div>
+
+        <div class="narrative-overlay-container">
+          <!-- Fase Carretera 1 -->
+          <div class="story-card phase" id="road-phase-1">
+            <div class="pill-tag">Libertad Total</div>
+            <h2 class="section-title">
+              Rueda sin fronteras. <br>
+              <span class="gradient-text">Protección sin límites.</span>
+            </h2>
+            <p class="section-desc">
+              Ya sea en tus trayectos diarios por la ciudad o conquistando curvas en carreteras abiertas, tu Escudo Vial viaja contigo en silencio y listo para responder.
+            </p>
+          </div>
+
+          <!-- Fase Carretera 2 -->
+          <div class="story-card phase" id="road-phase-2">
+            <div class="pill-tag tag-accent">Comunidad Motera</div>
+            <h2 class="section-title">
+              El nuevo estándar <br>
+              <span class="highlight-blue">de la hermandad en dos ruedas.</span>
+            </h2>
+            <p class="section-desc">
+              Cuando otro motero ve el sticker de Escudo Vial en tu casco, sabe que ante cualquier percance, socorrerte será más rápido, seguro y certero.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ESPECIFICACIONES TÉCNICAS DEL STICKER ================= -->
+    <section class="tech-specs-section">
+      <div class="container-editorial">
+        <div class="editorial-header text-center">
+          <div class="kicker">CONSTRUCCIÓN DEL STICKER</div>
+          <h2 class="headline-editorial">
+            Hecho para resistir la vida en el asfalto.
+          </h2>
+          <p class="lead-editorial mx-auto">
+            Cada sticker de Escudo Vial está fabricado con polímeros industriales de alta especificación para soportar los rigores del clima y la velocidad.
+          </p>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">Material de Base</div>
+            <div class="spec-value">Vinilo Polimérico Fundido 3M de 80 micras</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Adhesivo</div>
+            <div class="spec-value">Acrílico Permanente Hi-Tack (No daña la pintura ni el policarbonato del casco)</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Laminado Protector</div>
+            <div class="spec-value">Película Anti-UV & Anti-Rayaduras brillante de 50 micras</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Tolerancia Térmica</div>
+            <div class="spec-value">-35°C hasta +95°C sin deformación ni pérdida de adherencia</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Reflectividad</div>
+            <div class="spec-value">Microesferas de vidrio retro-reflectantes para visibilidad con luces de noche</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Dimensiones</div>
+            <div class="spec-value">4.5 cm x 4.5 cm con bordes redondeados anti-desprendimiento</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PREGUNTAS FRECUENTES (FAQ) ================= -->
+    <section class="faq-section">
+      <div class="container-editorial">
+        <div class="editorial-header text-center">
+          <div class="kicker">DUDAS COMUNES</div>
+          <h2 class="headline-editorial">
+            Preguntas Frecuentes
+          </h2>
+        </div>
+
+        <div class="faq-accordion">
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Qué ocurre si cambio de casco o de motocicleta?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Tu información médica está vinculada en la nube a tu cuenta de Escudo Vial, no al casco físico. Si cambias de casco, puedes solicitar un nuevo sticker de reposición por una fracción del costo y vincularlo en 30 segundos con el mismo perfil.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿El socorrista necesita tener una app de Escudo Vial instalada?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>¡No! Ese es uno de los pilares fundamentales del sistema. Cualquier teléfono móvil estándar (iPhone o Android) escanea el código directamente desde la cámara nativa y abre la ficha médica en el navegador en menos de 2 segundos.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿El adhesivo daña la pintura o el material del casco?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>No. Utilizamos adhesivos acrílicos certificados grado automotriz y aeroespacial (compatibles con carcasas de fibra de carbono, fibra de vidrio y policarbonato). Si decides retirarlo a futuro, sale limpio con calor suave sin dejar residuos ni degradar la pintura.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Mis datos médicos personales están expuestos a cualquiera?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Tú tienes control total desde tu panel de usuario sobre qué datos mostrar. Solo se recomienda exponer lo clínicamente indispensable para salvar la vida en una sala de shock o carretera (grupo sanguíneo, alergias a fármacos y contactos de emergencia). No se solicitan datos financieros ni números de cuenta.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LLAMADO A LA ACCIÓN FINAL ================= -->
+    <section class="cta-banner-section">
+      <div class="container-editorial text-center">
+        <div class="cta-shield-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="cta-headline">
+          No salgas a la calle sin tu <span class="highlight-blue">Escudo Vial</span>.
+        </h2>
+        <p class="cta-sub">
+          Únete a los miles de motociclistas que ya ruedan con la tranquilidad de estar protegidos las 24 horas del día.
+        </p>
+        <div class="cta-btn-group">
+          <a href="https://wa.me/?text=Hola%20quiero%20adquirir%20mi%20Escudo%20Vial" target="_blank" class="btn-primary-pill btn-large">
+            <span>Pedir mi Sticker Ahora</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="arrow-icon">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER MINIMALISTA LIGHT ================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-text">ESCUDO<strong>VIAL</strong></div>
+          <p>Innovación tecnológica para la seguridad y protección de la comunidad motera en toda Latinoamérica.</p>
+        </div>
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h5>Navegación</h5>
+            <a href="#hero-scene">Inicio</a>
+            <a href="#filosofia">El Producto</a>
+            <a href="#simulador">Ficha Médica</a>
+            <a href="#protocolo">Protocolo Central</a>
+          </div>
+          <div class="footer-col">
+            <h5>Legal</h5>
+            <a href="#">Términos del Servicio</a>
+            <a href="#">Privacidad de Datos Médicos</a>
+            <a href="#">Garantía de Adherencia</a>
+          </div>
+          <div class="footer-col">
+            <h5>Central 24/7</h5>
+            <p class="footer-contact">emergencias@escudovial.com</p>
+            <p class="footer-contact">+58 (800) ESCUDO-1</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Escudo Vial Inc. Todos los derechos reservados. Diseñado para salvar vidas.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
