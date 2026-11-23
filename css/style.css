@@ -1262,6 +1262,30 @@ body {
   color: var(--brand-purple);
 }
 
+.feature-step-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  background: var(--brand-purple-light);
+  color: var(--brand-purple);
+  border: 1.5px solid var(--brand-purple-border);
+  box-shadow: 0 2px 8px rgba(75, 44, 132, 0.08);
+}
+
+.feature-step-num.num-mint {
+  background: var(--brand-mint-light);
+  color: var(--brand-mint-hover);
+  border-color: rgba(26, 188, 156, 0.3);
+  box-shadow: 0 2px 8px rgba(26, 188, 156, 0.12);
+}
+
 .feature-bullet-icon svg {
   width: 24px;
   height: 24px;
@@ -1295,79 +1319,6 @@ body {
     grid-template-columns: 1fr;
     justify-items: center;
   }
-}
-}
-
-.plan-price {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  margin-bottom: 30px;
-}
-
-.plan-price .currency {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.plan-price .amount {
-  font-family: var(--font-display);
-  font-size: 3.4rem;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--text-primary);
-}
-
-.plan-price .period {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.plan-features {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 38px;
-  flex-grow: 1;
-}
-
-.plan-features li {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.btn-card-action {
-  display: block;
-  text-align: center;
-  padding: 14px 24px;
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.95rem;
-  transition: all 0.25s ease;
-}
-
-.btn-card-action:hover {
-  background: var(--text-primary);
-  color: #FFFFFF;
-}
-
-.btn-card-action.btn-featured {
-  background: var(--accent-blue);
-  color: #FFFFFF;
-  box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.4);
-}
-
-.btn-card-action.btn-featured:hover {
-  background: var(--accent-blue-hover);
-  transform: translateY(-2px);
 }
 
 /* ================= FAQ ACCORDION ================= */
