@@ -265,6 +265,10 @@ body {
   transform: translateX(3px);
 }
 
+.btn-text-mobile {
+  display: none;
+}
+
 /* ================= SCROLL SCENE SECTIONS (CANVAS SCRUBBING) ================= */
 .scroll-scene-section {
   position: relative;
@@ -1567,6 +1571,51 @@ body {
 }
 
 @media (max-width: 640px) {
+  .header-nav {
+    padding: 8px 10px;
+  }
+
+  .nav-container {
+    padding: 6px 12px;
+    gap: 8px;
+    border-radius: 999px;
+  }
+
+  .nav-brand {
+    gap: 6px;
+  }
+
+  .brand-logo-img {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+  }
+
+  .brand-text {
+    font-size: 0.88rem;
+  }
+
+  .btn-primary-pill {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .btn-primary-pill .arrow-icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .btn-text-desktop {
+    display: none;
+  }
+
+  .btn-text-mobile {
+    display: inline;
+  }
+
   .narrative-overlay-container {
     padding: 0 16px;
     align-items: flex-end;
