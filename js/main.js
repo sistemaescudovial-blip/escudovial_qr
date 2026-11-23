@@ -301,50 +301,66 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     5. INTERACTIVE MEDICAL PROFILE SIMULATOR
+     5. INTERACTIVE CALL CENTER & CENTRAL MONITORING SIMULATOR
      ========================================================================== */
-  // Tabs Navigation inside phone mockup
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabPanels = document.querySelectorAll('.tab-panel');
+  // Live Monitor Digital Clock
+  const clockEl = document.getElementById('monitor-live-clock');
+  function updateLiveClock() {
+    if (!clockEl) return;
+    const now = new Date();
+    const hrs = String(now.getHours()).padStart(2, '0');
+    const mins = String(now.getMinutes()).padStart(2, '0');
+    const secs = String(now.getSeconds()).padStart(2, '0');
+    clockEl.textContent = `${hrs}:${mins}:${secs}`;
+  }
+  updateLiveClock();
+  setInterval(updateLiveClock, 1000);
 
-  tabButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const targetTab = btn.getAttribute('data-tab');
+  // Elapsed Alert Timer
+  let elapsedSeconds = 4;
+  const elapsedTimerEl = document.getElementById('alert-elapsed-timer');
+  let alertTimerInterval = setInterval(() => {
+    if (!elapsedTimerEl) return;
+    elapsedSeconds++;
+    const s = String(elapsedSeconds % 60).padStart(2, '0');
+    const m = String(Math.floor(elapsedSeconds / 60)).padStart(2, '0');
+    elapsedTimerEl.textContent = `${m}:${s}s`;
+  }, 1000);
 
-      tabButtons.forEach((b) => b.classList.remove('active'));
-      tabPanels.forEach((p) => p.classList.remove('active'));
-
-      btn.classList.add('active');
-      const activePanel = document.getElementById(`tab-${targetTab}`);
-      if (activePanel) activePanel.classList.add('active');
-    });
-  });
-
-  // Emergency Call Simulation
-  window.simularLlamada = function (contacto) {
-    alert(`📞 [Simulación de Llamada de Emergencia]\n\nConectando directamente con ${contacto}...\nEn caso real, se abre el marcador nativo del teléfono.`);
+  // Dispatch Ambulance Simulation
+  window.despacharSimulacion = function () {
+    playEmergencyChime();
+    const btnText = document.getElementById('dispatch-btn-text');
+    const banner = document.getElementById('dispatch-confirmation-banner');
+    if (btnText) btnText.textContent = '✅ Despacho en Curso';
+    if (banner) {
+      banner.classList.remove('hidden');
+    }
   };
 
-  // Panic Button SOS Trigger
-  const panicBtn = document.getElementById('btn-panic-trigger');
-  const sosFeedback = document.getElementById('sos-alert-feedback');
+  // Notify Family Contacts Simulation
+  window.notificarFamiliares = function () {
+    playEmergencyChime();
+    alert('📞 [CENTRAL ESCUDO VIAL]\n\nEnlazando llamada automática prioritaria y enviando SMS con coordenadas GPS en vivo a los contactos SOS registrados:\n• Mariana Silva (Esposa - +58 414 839-2011)\n• Carlos Mendoza (Hermano - +58 412 550-9182)');
+  };
 
-  if (panicBtn) {
-    panicBtn.addEventListener('click', () => {
-      // Synthesize modern subtle audio chime via Web Audio API
-      playEmergencyChime();
+  // Replay Simulator Event
+  window.reiniciarSimulacionCentral = function () {
+    playEmergencyChime();
+    elapsedSeconds = 1;
+    if (elapsedTimerEl) elapsedTimerEl.textContent = '00:01s';
+    const btnText = document.getElementById('dispatch-btn-text');
+    const banner = document.getElementById('dispatch-confirmation-banner');
+    if (btnText) btnText.textContent = 'Despachar Ambulancia';
+    if (banner) banner.classList.add('hidden');
 
-      if (sosFeedback) {
-        sosFeedback.classList.remove('hidden');
-        sosFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-
-      panicBtn.style.transform = 'scale(0.96)';
-      setTimeout(() => {
-        panicBtn.style.transform = 'none';
-      }, 200);
-    });
-  }
+    const card = document.getElementById('monitor-alert-card');
+    if (card) {
+      card.style.animation = 'none';
+      card.offsetHeight;
+      card.style.animation = 'tabFadeIn 0.4s ease';
+    }
+  };
 
   // Web Audio API emergency alert sound synthesizer (no external audio files needed)
   function playEmergencyChime() {

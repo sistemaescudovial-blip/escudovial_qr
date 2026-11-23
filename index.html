@@ -39,7 +39,7 @@
       <nav class="nav-menu">
         <a href="#hero-scene" class="nav-link">Inicio</a>
         <a href="#filosofia" class="nav-link">El Producto</a>
-        <a href="#simulador" class="nav-link">Ficha Médica</a>
+        <a href="#simulador" class="nav-link">Central 24/7</a>
         <a href="#protocolo" class="nav-link">Protocolo Central</a>
         <a href="#en-ruta" class="nav-link">En Carretera</a>
       </nav>
@@ -289,190 +289,183 @@
       </div>
     </section>
 
-    <!-- ================= ZONA DE RESPIRACIÓN 2: SIMULADOR INTERACTIVO DE FICHA MÉDICA & BOTÓN SOS ================= -->
+    <!-- ================= ZONA DE RESPIRACIÓN 2: SIMULADOR INTERACTIVO DE LA CENTRAL DE MONITOREO 24/7 ================= -->
     <section class="simulator-section" id="simulador">
       <div class="container-editorial">
         <div class="editorial-header text-center">
-          <div class="kicker">INTERACCIÓN EN VIVO</div>
+          <div class="kicker">CENTRAL DE OPERACIONES 24/7</div>
           <h2 class="headline-editorial">
-            Prueba cómo se ve tu <span class="highlight-blue">Ficha Médica</span> al ser escaneada.
+            Monitoreo satelital y respuesta <span class="highlight-mint">en tiempo real</span>.
           </h2>
           <p class="lead-editorial mx-auto">
-            Haz clic en los elementos del teléfono simulado. Prueba el <strong>Botón de Pánico</strong> para experimentar cómo se dispara la alerta a la central.
+            Así recibe nuestro centro de comando cada alerta de emergencia. Interactúa con la consola simulada para ver la geolocalización y el despacho en acción.
           </p>
         </div>
 
         <div class="simulator-wrapper">
           
-          <!-- Mockup Móvil Interactivo -->
-          <div class="phone-mockup-frame">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
+          <!-- Mockup Monitor / Consola de Call Center -->
+          <div class="monitor-mockup-frame">
+            <!-- Barra Superior del Monitor / Marco Hardware -->
+            <div class="monitor-hardware-header">
+              <div class="monitor-cam-dot"></div>
+              <div class="monitor-screen-title">
+                <span class="status-indicator-live"></span>
+                <span>CENTRAL 24/7 • CONSOLA DE MONITOREO Y DESPACHO</span>
+              </div>
+              <div class="monitor-clock" id="monitor-live-clock">14:55:00</div>
+            </div>
+
+            <!-- Pantalla del Monitor -->
+            <div class="monitor-screen">
               
-              <!-- Encabezado de la Ficha Médica -->
-              <div class="screen-header">
-                <div class="medical-badge">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M12 2v20M2 12h20"/>
-                  </svg>
-                  <span>FICHA MÉDICA DE EMERGENCIA</span>
-                </div>
-                <div class="status-verified">● Perfil Verificado</div>
-              </div>
+              <!-- Mapa Táctico Interactivo -->
+              <div class="monitor-map-canvas-wrap">
+                <!-- SVG Mapa Táctico de Carretera & Calles -->
+                <svg class="tactical-map-svg" viewBox="0 0 600 380" preserveAspectRatio="none">
+                  <defs>
+                    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                    </pattern>
+                  </defs>
+                  <!-- Fondo Oscuro Táctico -->
+                  <rect width="100%" height="100%" fill="#0B1120"/>
+                  <rect width="100%" height="100%" fill="url(#grid-pattern)"/>
+                  
+                  <!-- Vías y Autopistas de la Ciudad -->
+                  <path d="M 0 190 Q 200 160 320 200 T 600 180" stroke="#1E293B" stroke-width="18" fill="none"/>
+                  <path d="M 0 190 Q 200 160 320 200 T 600 180" stroke="#334155" stroke-width="14" fill="none"/>
+                  <path d="M 0 190 Q 200 160 320 200 T 600 180" stroke="#64748B" stroke-width="2" stroke-dasharray="8 8" fill="none"/>
+                  
+                  <path d="M 180 0 L 220 380" stroke="#1E293B" stroke-width="10" fill="none"/>
+                  <path d="M 420 0 Q 380 200 450 380" stroke="#1E293B" stroke-width="12" fill="none"/>
 
-              <!-- Perfil del Piloto -->
-              <div class="pilot-profile-card">
-                <div class="avatar-ring">
-                  <div class="avatar-img">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                      <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                  </div>
-                  <span class="blood-type-badge">O Positivo</span>
-                </div>
-                <div class="pilot-details">
-                  <h4 class="pilot-name">Alejandro Mendoza R.</h4>
-                  <p class="pilot-id">DNI: 43.829.102 • 31 Años</p>
-                  <p class="pilot-bike">Yamaha MT-09 • Placa: KV-8842</p>
-                </div>
-              </div>
+                  <!-- Etiquetas de Vías -->
+                  <text x="50" y="172" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="1">AUTOPISTA FCO. FAJARDO</text>
+                  <text x="360" y="225" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="1">DIST. ALTAMIRA</text>
+                  
+                  <!-- Ruta de Despacho Trazada en Menta Neón -->
+                  <path id="dispatch-route-line" d="M 120 120 Q 220 140 330 195" stroke="#1ABC9C" stroke-width="4" stroke-dasharray="6 4" fill="none" class="animated-route"/>
 
-              <!-- Pestañas de Datos -->
-              <div class="screen-tabs">
-                <button class="tab-btn active" data-tab="datos">Datos Médicos</button>
-                <button class="tab-btn" data-tab="contactos">Contactos SOS</button>
-                <button class="tab-btn" data-tab="seguro">Póliza / Seguro</button>
-              </div>
+                  <!-- Base de Ambulancia -->
+                  <g transform="translate(110, 110)">
+                    <circle cx="10" cy="10" r="16" fill="rgba(26, 188, 156, 0.25)"/>
+                    <circle cx="10" cy="10" r="6" fill="#1ABC9C"/>
+                    <text x="18" y="5" fill="#1ABC9C" font-size="9" font-weight="800">BASE RESCATE 01</text>
+                  </g>
+                </svg>
 
-              <!-- Contenido de Pestaña: Datos Médicos -->
-              <div class="tab-panel active" id="tab-datos">
-                <div class="data-row alert-row">
-                  <div class="data-label">⚠️ Alergias Críticas</div>
-                  <div class="data-value highlight-red">Alérgico a Penicilina y AINEs</div>
-                </div>
-                <div class="data-grid-2">
-                  <div class="data-row">
-                    <div class="data-label">Grupo Sanguíneo</div>
-                    <div class="data-value strong">O+ (Dador Universal)</div>
-                  </div>
-                  <div class="data-row">
-                    <div class="data-label">Donante de Órganos</div>
-                    <div class="data-value">Sí (Expreso)</div>
-                  </div>
-                </div>
-                <div class="data-row">
-                  <div class="data-label">Condiciones / Enfermedades</div>
-                  <div class="data-value">Asma leve (Uso de salbutamol ocasional)</div>
-                </div>
-              </div>
-
-              <!-- Contenido de Pestaña: Contactos SOS -->
-              <div class="tab-panel" id="tab-contactos">
-                <div class="contact-card">
-                  <div class="contact-info">
-                    <div class="contact-role">Esposa (Contacto Primario)</div>
-                    <div class="contact-name">Mariana Silva</div>
-                    <div class="contact-phone">+58 414 839-2011</div>
-                  </div>
-                  <button class="btn-call-fake" onclick="simularLlamada('Mariana Silva')">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-                    </svg>
-                    <span>Llamar</span>
-                  </button>
-                </div>
-                <div class="contact-card">
-                  <div class="contact-info">
-                    <div class="contact-role">Hermano</div>
-                    <div class="contact-name">Carlos Mendoza</div>
-                    <div class="contact-phone">+58 412 550-9182</div>
-                  </div>
-                  <button class="btn-call-fake" onclick="simularLlamada('Carlos Mendoza')">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-                    </svg>
-                    <span>Llamar</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Contenido de Pestaña: Seguro -->
-              <div class="tab-panel" id="tab-seguro">
-                <div class="data-row">
-                  <div class="data-label">Aseguradora</div>
-                  <div class="data-value strong">Seguros Caracas / Plan Salud Total</div>
-                </div>
-                <div class="data-row">
-                  <div class="data-label">N° de Póliza</div>
-                  <div class="data-value">POL-99281-A</div>
-                </div>
-                <div class="data-row">
-                  <div class="data-label">Clínica de Preferencia</div>
-                  <div class="data-value">Centro Médico Docente La Trinidad</div>
-                </div>
-              </div>
-
-              <!-- SECCIÓN DEL BOTÓN DE PÁNICO SOS -->
-              <div class="panic-button-box">
-                <div class="panic-caption">Si el piloto necesita rescate inmediato:</div>
-                <button id="btn-panic-trigger" class="btn-panic-sos">
-                  <div class="sos-icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <!-- Ping y Punto de Impacto Satelital -->
+                <div class="map-incident-target" id="map-target">
+                  <div class="beacon-circle pulse-1"></div>
+                  <div class="beacon-circle pulse-2"></div>
+                  <div class="beacon-pin">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5">
                       <polygon points="12 2 2 7 12 12 22 7 12 2"/>
                       <polyline points="2 17 12 22 22 17"/>
                       <polyline points="2 12 12 17 22 12"/>
                     </svg>
                   </div>
-                  <div class="sos-text">
-                    <span class="sos-main">BOTÓN DE PÁNICO SOS</span>
-                    <span class="sos-sub">Toca para alertar a la Central 24/7</span>
-                  </div>
-                </button>
-                
-                <!-- Feedback animado de alerta -->
-                <div id="sos-alert-feedback" class="sos-feedback hidden">
-                  <div class="signal-radar"></div>
-                  <div class="sos-feedback-content">
-                    <strong>¡ALERTA TRANSMITIDA A CENTRAL!</strong>
-                    <span>GPS: 10.4880° N, 66.8792° W</span>
-                    <div class="dispatch-tag">Despacho de asistencia en curso</div>
+                  <div class="beacon-label">
+                    <span class="label-urgency">ALERTA SOS ACTIVA</span>
+                    <span class="label-loc">KM 14 • 10.4880° N, 66.8792° W</span>
                   </div>
                 </div>
+
+                <!-- Tarjeta Flotante: Telemetría en Vivo de la Central -->
+                <div class="monitor-alert-overlay" id="monitor-alert-card">
+                  <div class="alert-top-badge">
+                    <span class="badge-pulsing-red"></span>
+                    <span class="badge-text">EMERGENCIA EN CURSO — CÓDIGO EV2632VE</span>
+                    <span class="badge-time" id="alert-elapsed-timer">00:04s</span>
+                  </div>
+                  
+                  <div class="alert-grid-info">
+                    <div class="alert-col">
+                      <div class="info-label">Piloto Accidentado</div>
+                      <div class="info-val strong">Alejandro Mendoza R.</div>
+                      <div class="info-sub">Yamaha MT-09 • Placa KV-8842</div>
+                    </div>
+                    <div class="alert-col">
+                      <div class="info-label">Ficha Médica Crítica</div>
+                      <div class="info-tags">
+                        <span class="med-tag tag-blood">Sangre: O+</span>
+                        <span class="med-tag tag-allergy">Alérgico: Penicilina</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="alert-actions-row">
+                    <button class="btn-dispatch-now" id="btn-dispatch-ambulance" onclick="despacharSimulacion()">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="3" width="15" height="13"/>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/>
+                        <circle cx="18.5" cy="18.5" r="2.5"/>
+                      </svg>
+                      <span id="dispatch-btn-text">Despachar Ambulancia</span>
+                    </button>
+
+                    <button class="btn-call-family" id="btn-notify-family" onclick="notificarFamiliares()">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                      </svg>
+                      <span>Llamar Familiares</span>
+                    </button>
+                    
+                    <button class="btn-replay-sim" id="btn-replay-alert" onclick="reiniciarSimulacionCentral()" title="Reiniciar Simulación">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="1 4 1 10 7 10"/>
+                        <path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+                      </svg>
+                    </button>
+                  </div>
+                  
+                  <div class="dispatch-status-banner hidden" id="dispatch-confirmation-banner">
+                    🚑 <strong>Unidad Alfa-04 en ruta.</strong> Coordenadas GPS y ficha médica transmitidas al paramédico.
+                  </div>
+                </div>
+
               </div>
 
             </div>
+            
+            <!-- Pie / Base del Monitor Hardware -->
+            <div class="monitor-hardware-stand">
+              <div class="stand-neck"></div>
+              <div class="stand-base"></div>
+            </div>
           </div>
 
-          <!-- Explicación al lado del Mockup -->
+          <!-- Explicación al lado del Monitor -->
           <div class="simulator-features">
             <div class="feature-step">
               <div class="step-num">01</div>
               <div class="step-content">
-                <h4>Acceso Sin Barreras</h4>
-                <p>El paramédico no tiene que desbloquear el teléfono del accidentado ni adivinar contraseñas. Un escaneo de 2 segundos desde cualquier móvil muestra la información.</p>
+                <h4>Recepción Inmediata en Pantalla</h4>
+                <p>Al activarse el código QR o botón de pánico, la emergencia ingresa en la consola del operador en menos de 2 segundos con telemetría en vivo y alerta audible.</p>
               </div>
             </div>
 
             <div class="feature-step">
               <div class="step-num">02</div>
               <div class="step-content">
-                <h4>Evita Errores Médicos Fatales</h4>
-                <p>La administración involuntaria de antibióticos o analgésicos a los que el paciente es alérgico causa miles de complicaciones al año. Escudo Vial lo previene de raíz.</p>
+                <h4>Geolocalización y Ruta de Rescate</h4>
+                <p>El mapa táctico fija las coordenadas satelitales exactas del siniestro y calcula la trayectoria más rápida para el despacho de ambulancias y patrullas viales.</p>
               </div>
             </div>
 
             <div class="feature-step">
               <div class="step-num">03</div>
               <div class="step-content">
-                <h4>Protocolo de Central 24/7</h4>
-                <p>Al pulsar el botón de auxilio, la alerta llega de inmediato a nuestros operadores con coordenadas GPS precisas, activando el enlace con unidades de ambulancia y llamando a los familiares.</p>
+                <h4>Triaje Médico y Enlace Familiar</h4>
+                <p>El operador transmite el grupo sanguíneo y alergias a la unidad en ruta mientras el sistema enlaza llamadas automáticas a los familiares registrados.</p>
               </div>
             </div>
 
             <div class="feature-quote-box">
-              <p>“Saber el grupo sanguíneo exacto y las alergias en el primer minuto reduce drásticamente el tiempo de traslado y estabilización en emergencias de tránsito.”</p>
-              <div class="quote-author">— Dr. Fernando Valero, Especialista en Medicina de Urgencias</div>
+              <p>“Visualizar la ubicación en el mapa y el cuadro médico en el primer minuto reduce drásticamente el tiempo de traslado y salva vidas en carretera.”</p>
+              <div class="quote-author">— Central de Monitoreo & Emergencias Escudo Vial 24/7</div>
             </div>
           </div>
 
@@ -696,7 +689,7 @@
             <h5>Navegación</h5>
             <a href="#hero-scene">Inicio</a>
             <a href="#filosofia">El Producto</a>
-            <a href="#simulador">Ficha Médica</a>
+            <a href="#simulador">Central 24/7</a>
             <a href="#protocolo">Protocolo Central</a>
           </div>
           <div class="footer-col">

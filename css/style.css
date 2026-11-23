@@ -633,384 +633,437 @@ body {
   border-bottom: 1px solid var(--border-subtle);
 }
 
+/* ================= SIMULADOR CONSOLA CALL CENTER / MONITOR 24/7 ================= */
 .simulator-wrapper {
   display: grid;
-  grid-template-columns: 440px 1fr;
-  gap: 60px;
+  grid-template-columns: minmax(320px, 1.15fr) 0.85fr;
+  gap: 50px;
   align-items: center;
 }
 
-/* Mockup de Teléfono */
-.phone-mockup-frame {
-  background: #0F172A;
-  padding: 12px;
-  border-radius: 46px;
-  box-shadow: 0 35px 80px -20px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+/* Marco del Monitor Hardware */
+.monitor-mockup-frame {
+  background: #0B0F19;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 35px 80px -15px rgba(15, 23, 42, 0.35), 0 0 0 1px rgba(75, 44, 132, 0.15);
+  padding: 14px 14px 18px 14px;
   position: relative;
+  transition: transform 0.3s ease;
 }
 
-.phone-notch {
-  position: absolute;
-  top: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 110px;
-  height: 18px;
-  background: #000000;
-  border-radius: 999px;
-  z-index: 20;
+.monitor-mockup-frame:hover {
+  transform: translateY(-4px);
 }
 
-.phone-screen {
-  background: #FFFFFF;
-  border-radius: 36px;
-  padding: 34px 20px 24px 20px;
-  overflow: hidden;
-  position: relative;
-}
-
-.screen-header {
+.monitor-hardware-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 6px 10px 12px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 10px;
 }
 
-.medical-badge {
+.monitor-cam-dot {
+  width: 7px;
+  height: 7px;
+  background: #334155;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.monitor-screen-title {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--accent-red);
+  font-weight: 700;
+  color: #94A3B8;
+  letter-spacing: 0.06em;
+  font-family: var(--font-display);
+}
+
+.status-indicator-live {
+  width: 8px;
+  height: 8px;
+  background: var(--brand-mint);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px var(--brand-mint);
+  animation: liveBlink 1.6s infinite ease-in-out;
+}
+
+@keyframes liveBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.85); }
+}
+
+.monitor-clock {
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #E2E8F0;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px 8px;
+  border-radius: 6px;
   letter-spacing: 0.05em;
 }
 
-.medical-badge svg {
-  width: 14px;
-  height: 14px;
-}
-
-.status-verified {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--accent-green);
-}
-
-.pilot-profile-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 18px;
-}
-
-.avatar-ring {
+/* Pantalla del Monitor y Contenedor de Mapa */
+.monitor-screen {
+  background: #060913;
+  border-radius: 16px;
+  overflow: hidden;
   position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.avatar-img {
-  width: 60px;
-  height: 60px;
+.monitor-map-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+
+.tactical-map-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.animated-route {
+  stroke-dashoffset: 100;
+  animation: dashRoute 4s linear infinite;
+}
+
+@keyframes dashRoute {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Ping y Marcador de Impacto Satelital */
+.map-incident-target {
+  position: absolute;
+  top: 51%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.beacon-circle {
+  position: absolute;
   border-radius: 50%;
-  background: var(--bg-tertiary);
+  border: 2px solid #EF4444;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.beacon-circle.pulse-1 {
+  width: 48px;
+  height: 48px;
+  animation: radarWave 2s infinite ease-out;
+}
+
+.beacon-circle.pulse-2 {
+  width: 90px;
+  height: 90px;
+  animation: radarWave 2s infinite ease-out 0.6s;
+}
+
+@keyframes radarWave {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+
+.beacon-pin {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 0 0 3px rgba(255, 255, 255, 0.9);
+  position: relative;
+  z-index: 2;
+  animation: pinBounce 1.5s infinite ease-in-out;
 }
 
-.avatar-img svg {
-  width: 32px;
-  height: 32px;
+.beacon-pin svg {
+  width: 20px;
+  height: 20px;
 }
 
-.blood-type-badge {
+@keyframes pinBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.beacon-label {
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(239, 68, 68, 0.6);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-top: 6px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.label-urgency {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #EF4444;
+  letter-spacing: 0.08em;
+}
+
+.label-loc {
+  display: block;
+  font-size: 0.62rem;
+  font-family: monospace;
+  color: #CBD5E1;
+}
+
+/* Tarjeta Flotante de Despacho en Vivo */
+.monitor-alert-overlay {
   position: absolute;
-  bottom: -4px;
-  right: -4px;
-  background: var(--accent-red);
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 14px;
+  padding: 14px 16px;
   color: #FFFFFF;
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 2px 6px;
-  border-radius: 999px;
-  border: 2px solid #FFFFFF;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  z-index: 20;
 }
 
-.pilot-name {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  line-height: 1.2;
-}
-
-.pilot-id {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.pilot-bike {
-  font-size: 0.78rem;
-  color: var(--accent-blue);
-  font-weight: 600;
-}
-
-/* Tabs */
-.screen-tabs {
+.alert-top-badge {
   display: flex;
-  gap: 6px;
-  background: var(--bg-tertiary);
-  padding: 4px;
-  border-radius: 12px;
-  margin-bottom: 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-.tab-btn {
-  flex: 1;
-  padding: 8px 4px;
-  border: none;
-  background: transparent;
-  border-radius: 8px;
-  font-size: 0.76rem;
+.badge-pulsing-red {
+  width: 8px;
+  height: 8px;
+  background: #EF4444;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px #EF4444;
+  animation: liveBlink 1s infinite;
+}
+
+.badge-text {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #FCA5A5;
+  letter-spacing: 0.05em;
+  flex-grow: 1;
+  margin-left: 8px;
+}
+
+.badge-time {
+  font-family: monospace;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--text-secondary);
+  background: rgba(239, 68, 68, 0.2);
+  color: #FECDD3;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.alert-grid-info {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.info-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94A3B8;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.info-val.strong {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #F8FAFC;
+}
+
+.info-sub {
+  font-size: 0.72rem;
+  color: #94A3B8;
+  font-weight: 600;
+}
+
+.info-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.med-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.tag-blood {
+  background: rgba(239, 68, 68, 0.2);
+  color: #FCA5A5;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.tag-allergy {
+  background: rgba(245, 158, 11, 0.2);
+  color: #FCD34D;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.alert-actions-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-dispatch-now {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #1ABC9C 0%, #16A085 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(26, 188, 156, 0.35);
+}
+
+.btn-dispatch-now:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(26, 188, 156, 0.45);
+}
+
+.btn-dispatch-now svg {
+  width: 15px;
+  height: 15px;
+}
+
+.btn-call-family {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #E2E8F0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.tab-btn.active {
-  background: #FFFFFF;
-  color: var(--accent-blue);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+.btn-call-family:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
 }
 
-.tab-panel {
-  display: none;
+.btn-call-family svg {
+  width: 14px;
+  height: 14px;
+}
+
+.btn-replay-sim {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-replay-sim:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.btn-replay-sim svg {
+  width: 15px;
+  height: 15px;
+}
+
+.dispatch-status-banner {
+  margin-top: 10px;
+  background: rgba(26, 188, 156, 0.18);
+  border: 1px solid rgba(26, 188, 156, 0.4);
+  color: #A7F3D0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  line-height: 1.4;
   animation: tabFadeIn 0.3s ease;
 }
 
-.tab-panel.active {
-  display: block;
-}
-
-@keyframes tabFadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.data-row {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 10px 14px;
-  margin-bottom: 10px;
-}
-
-.data-row.alert-row {
-  background: #FFF1F2;
-  border-color: #FECDD3;
-}
-
-.data-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  margin-bottom: 2px;
-}
-
-.alert-row .data-label {
-  color: var(--accent-red);
-}
-
-.data-value {
-  font-size: 0.88rem;
-  color: var(--text-primary);
-}
-
-.data-value.strong {
-  font-weight: 800;
-}
-
-.data-grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-/* Contact Cards in Mockup */
-.contact-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin-bottom: 10px;
-}
-
-.contact-role {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--accent-blue);
-  text-transform: uppercase;
-}
-
-.contact-name {
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.contact-phone {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
-
-.btn-call-fake {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 6px 12px;
-  background: var(--accent-green);
-  color: #FFFFFF;
-  border: none;
-  border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.btn-call-fake:hover {
-  transform: scale(1.05);
-}
-
-.btn-call-fake svg {
-  width: 13px;
-  height: 13px;
-}
-
-/* Panic Button in Mockup */
-.panic-button-box {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px dashed var(--border-subtle);
-}
-
-.panic-caption {
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  text-align: center;
-  font-weight: 600;
-}
-
-.btn-panic-sos {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
-  color: #FFFFFF;
-  border: none;
-  border-radius: 16px;
-  padding: 16px;
-  cursor: pointer;
-  box-shadow: var(--shadow-panic);
-  transition: all 0.25s var(--transition-smooth);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-panic-sos:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px -5px rgba(220, 38, 38, 0.5);
-}
-
-.btn-panic-sos:active {
-  transform: scale(0.97);
-}
-
-.sos-icon-wrap {
-  width: 34px;
-  height: 34px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sos-icon-wrap svg {
-  width: 18px;
-  height: 18px;
-}
-
-.sos-text {
-  text-align: left;
-}
-
-.sos-main {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
-
-.sos-sub {
-  display: block;
-  font-size: 0.68rem;
-  opacity: 0.9;
-}
-
-/* Feedback de Alerta SOS */
-.sos-feedback {
-  margin-top: 14px;
-  background: #FEF2F2;
-  border: 1px solid #FCA5A5;
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
-  animation: alertPulseIn 0.4s ease;
-}
-
-.sos-feedback.hidden {
+.dispatch-status-banner.hidden {
   display: none;
 }
 
-@keyframes alertPulseIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+/* Base del Monitor */
+.monitor-hardware-stand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4px;
 }
 
-.sos-feedback-content strong {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--accent-red);
+.stand-neck {
+  width: 50px;
+  height: 20px;
+  background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+  border-radius: 2px;
 }
 
-.sos-feedback-content span {
-  display: block;
-  font-size: 0.72rem;
-  color: var(--text-secondary);
-  font-family: monospace;
-  margin: 4px 0;
-}
-
-.dispatch-tag {
-  display: inline-block;
-  background: var(--accent-red);
-  color: #FFFFFF;
-  font-size: 0.66rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 999px;
-  text-transform: uppercase;
+.stand-base {
+  width: 140px;
+  height: 6px;
+  background: #334155;
+  border-radius: 6px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
 /* Features al lado del Mockup */
@@ -1588,8 +1641,8 @@ body {
     justify-items: center;
   }
   
-  .phone-mockup-frame {
-    max-width: 380px;
+  .monitor-mockup-frame {
+    max-width: 580px;
     width: 100%;
   }
 
