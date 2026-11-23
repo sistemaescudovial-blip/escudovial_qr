@@ -562,6 +562,11 @@ body {
   margin-bottom: 12px;
 }
 
+.metric-number.text-word {
+  font-size: 2.15rem;
+  letter-spacing: -0.02em;
+}
+
 .metric-label {
   font-size: 1.05rem;
   font-weight: 700;
@@ -624,6 +629,37 @@ body {
   font-size: 0.96rem;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+.pillar-box.pillar-featured {
+  border: 2px solid var(--brand-mint);
+  box-shadow: 0 16px 36px -8px rgba(26, 188, 156, 0.22);
+  position: relative;
+}
+
+.pillar-box.pillar-featured:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 42px -6px rgba(26, 188, 156, 0.32);
+}
+
+.pillar-badge-pill {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: var(--brand-mint);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 12px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(26, 188, 156, 0.35);
+}
+
+.pillar-icon.icon-mint {
+  background: var(--brand-mint-light);
+  color: var(--brand-mint-hover);
 }
 
 /* ================= SIMULADOR INTERACTIVO (FICHA MÉDICA & BOTÓN SOS) ================= */
@@ -1261,6 +1297,31 @@ body {
   color: var(--text-secondary);
   text-align: right;
   line-height: 1.25;
+}
+
+.flow-clinics-highlight {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: rgba(26, 188, 156, 0.12);
+  border: 1px solid rgba(26, 188, 156, 0.35);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: #065F46;
+  line-height: 1.35;
+}
+
+.flow-clinics-highlight svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: #10B981;
+}
+
+.flow-clinics-highlight strong {
+  color: #047857;
 }
 
 /* ================= ESPECIFICACIONES TÉCNICAS ================= */
