@@ -3,40 +3,54 @@
    ========================================================================== */
 
 :root {
-  /* Color Palette - Clean Light Theme */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F8FAFC;
-  --bg-tertiary: #F1F5F9;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --border-subtle: #E2E8F0;
-  --border-hover: #CBD5E1;
+  /* ================= PALETA OFICIAL ESCUDO VIAL (PLIEGO TÉCNICO) ================= */
+  --brand-purple: #4B2C84;
+  --brand-purple-hover: #3C226B;
+  --brand-purple-light: #F4F0FA;
+  --brand-purple-border: #DCD3EC;
+  --brand-purple-glow: rgba(75, 44, 132, 0.25);
 
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #94A3B8;
+  --brand-mint: #1ABC9C;
+  --brand-mint-hover: #16A085;
+  --brand-mint-light: #E8F8F5;
+  --brand-mint-border: #A3E4D7;
+  --brand-mint-glow: rgba(26, 188, 156, 0.25);
 
-  /* Accents */
-  --accent-blue: #0284C7;
-  --accent-blue-hover: #0369A1;
-  --accent-blue-light: #E0F2FE;
-  
-  --accent-red: #EF4444;
-  --accent-red-hover: #DC2626;
+  --accent-red: #E00707;
+  --accent-red-hover: #C50606;
   --accent-red-light: #FEE2E2;
 
-  --accent-green: #10B981;
-  --accent-green-light: #D1FAE5;
+  /* Aliases institucionales */
+  --accent-blue: var(--brand-purple);
+  --accent-blue-hover: var(--brand-purple-hover);
+  --accent-blue-light: var(--brand-purple-light);
+
+  --accent-green: var(--brand-mint);
+  --accent-green-light: var(--brand-mint-light);
   --accent-amber: #F59E0B;
+
+  /* Fondos Modo Claro Puro */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FAFAFD;
+  --bg-tertiary: #F3F1F8;
+  --bg-card: rgba(255, 255, 255, 0.94);
+  --border-subtle: #E6E1F0;
+  --border-hover: #CFC5E2;
+
+  --text-primary: #181326;
+  --text-secondary: #4A4458;
+  --text-muted: #8E889B;
 
   /* Typography */
   --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Space Grotesk', var(--font-main);
 
-  /* Shadows */
-  --shadow-subtle: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-  --shadow-card: 0 20px 40px -15px rgba(15, 23, 42, 0.07), 0 0 1px 1px rgba(15, 23, 42, 0.04);
-  --shadow-elevated: 0 30px 60px -20px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(15, 23, 42, 0.06);
-  --shadow-panic: 0 15px 35px -5px rgba(239, 68, 68, 0.4);
+  /* Sombras y Luces */
+  --shadow-subtle: 0 4px 20px -2px rgba(75, 44, 132, 0.05);
+  --shadow-card: 0 20px 40px -15px rgba(75, 44, 132, 0.08), 0 0 1px 1px rgba(75, 44, 132, 0.04);
+  --shadow-elevated: 0 30px 60px -20px rgba(75, 44, 132, 0.16), 0 0 1px 1px rgba(75, 44, 132, 0.06);
+  --shadow-panic: 0 15px 35px -5px rgba(224, 7, 7, 0.45);
+  --shadow-sticker: 0 25px 60px -12px rgba(75, 44, 132, 0.22), 0 10px 24px -6px rgba(26, 188, 156, 0.18);
 
   /* Blur & Transitions */
   --blur-glass: blur(16px);
@@ -175,31 +189,24 @@ body {
   color: var(--text-primary);
 }
 
-.brand-shield {
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--accent-blue), #0284c7);
-  color: #FFFFFF;
+.brand-logo-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
   border-radius: 10px;
-}
-
-.brand-shield svg {
-  width: 20px;
-  height: 20px;
+  box-shadow: 0 2px 8px rgba(75, 44, 132, 0.25);
 }
 
 .brand-text {
   font-size: 1.1rem;
   letter-spacing: -0.01em;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--brand-purple);
 }
 
 .brand-text strong {
   font-weight: 800;
-  color: var(--accent-blue);
+  color: var(--brand-mint);
 }
 
 .nav-menu {
@@ -218,7 +225,7 @@ body {
 }
 
 .nav-link:hover {
-  color: var(--accent-blue);
+  color: var(--brand-purple);
 }
 
 .nav-actions {
@@ -231,20 +238,20 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--text-primary);
+  background: var(--brand-purple);
   color: #FFFFFF;
   padding: 10px 22px;
   border-radius: 999px;
   text-decoration: none;
   font-size: 0.9rem;
-  font-weight: 600;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(75, 44, 132, 0.25);
   transition: all 0.25s ease;
 }
 
 .btn-primary-pill:hover {
-  background: var(--accent-blue);
-  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+  background: var(--brand-mint);
+  box-shadow: 0 6px 20px rgba(26, 188, 156, 0.4);
   transform: translateY(-1px);
 }
 
@@ -433,13 +440,17 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-blue) 0%, #0369A1 100%);
+  background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-mint) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .highlight-blue {
-  color: var(--accent-blue);
+  color: var(--brand-purple);
+}
+
+.highlight-mint {
+  color: var(--brand-mint);
 }
 
 .highlight-red {
@@ -1147,66 +1158,140 @@ body {
   color: var(--text-primary);
 }
 
-/* ================= PLANES Y PRECIOS ================= */
-.pricing-cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-  gap: 32px;
-  align-items: stretch;
+/* ================= SHOWCASE DEL STICKER OFICIAL ================= */
+.sticker-showcase-section {
+  padding: 120px 24px;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.pricing-card {
-  background: #FFFFFF;
-  border: 1px solid var(--border-subtle);
-  border-radius: 28px;
-  padding: 44px 34px;
+.sticker-showcase-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.sticker-visual-column {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.sticker-frame-card {
   position: relative;
-  box-shadow: var(--shadow-subtle);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: 36px;
+  padding: 38px 28px;
+  box-shadow: var(--shadow-sticker);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s var(--transition-smooth), box-shadow 0.4s ease;
 }
 
-.pricing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-elevated);
+.sticker-frame-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 35px 75px -15px rgba(75, 44, 132, 0.28);
 }
 
-.pricing-card.card-featured {
-  border: 2px solid var(--accent-blue);
-  box-shadow: 0 25px 50px -12px rgba(2, 132, 199, 0.15);
+.sticker-img-preview {
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px -8px rgba(75, 44, 132, 0.35);
+  display: block;
 }
 
-.plan-badge {
-  display: inline-block;
-  align-self: flex-start;
-  padding: 4px 12px;
-  background: var(--bg-tertiary);
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  font-weight: 700;
+.sticker-badge-spec {
+  margin-top: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--brand-purple-light);
+  border: 1px solid var(--brand-purple-border);
   border-radius: 999px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brand-purple);
+  box-shadow: var(--shadow-subtle);
 }
 
-.badge-featured {
-  background: var(--accent-blue);
-  color: #FFFFFF;
+.sticker-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.plan-name {
-  font-size: 1.4rem;
+.sticker-feature-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 22px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.sticker-feature-item:hover {
+  transform: translateX(6px);
+  border-color: var(--brand-mint);
+  box-shadow: var(--shadow-subtle);
+}
+
+.feature-bullet-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--brand-purple-light);
+  color: var(--brand-purple);
+}
+
+.feature-bullet-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.bullet-mint {
+  background: var(--brand-mint-light);
+  color: var(--brand-mint-hover);
+}
+
+.bullet-red {
+  background: var(--accent-red-light);
+  color: var(--accent-red);
+}
+
+.sticker-feature-item h4 {
+  font-size: 1.15rem;
   font-weight: 800;
-  margin-bottom: 8px;
   color: var(--text-primary);
+  margin-bottom: 6px;
 }
 
-.plan-subtitle {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  margin-bottom: 24px;
-  min-height: 42px;
+.sticker-feature-item p {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 992px) {
+  .sticker-showcase-container {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
 }
 
 .plan-price {
